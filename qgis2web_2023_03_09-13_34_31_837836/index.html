@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 998px;
+            height: 671px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/LBR_adm1_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[3.229763914758238,-13.109304240359368],[12.04740030925915,0.01829792544468134]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OpenStreetMap_0');
+        map.getPane('pane_OpenStreetMap_0').style.zIndex = 400;
+        var layer_OpenStreetMap_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OpenStreetMap_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OpenStreetMap_0;
+        map.addLayer(layer_OpenStreetMap_0);
+        function pop_LBR_adm1_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID_1'] !== null ? autolinker.link(feature.properties['ID_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME_1'] !== null ? autolinker.link(feature.properties['NAME_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POP_DENSIT'] !== null ? autolinker.link(feature.properties['POP_DENSIT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PopCounty'] !== null ? autolinker.link(feature.properties['PopCounty'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PopPopulation'] !== null ? autolinker.link(feature.properties['PopPopulation'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PopArea (km2)'] !== null ? autolinker.link(feature.properties['PopArea (km2)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PopNumber of districts'] !== null ? autolinker.link(feature.properties['PopNumber of districts'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PopDate Created'] !== null ? autolinker.link(feature.properties['PopDate Created'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PopArea'] !== null ? autolinker.link(feature.properties['PopArea'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_LBR_adm1_1_0(feature) {
+            if (feature.properties[' "PopPopulation"  /  "PopArea (km2)" '] >= 8.644649 && feature.properties[' "PopPopulation"  /  "PopArea (km2)" '] <= 11.859871 ) {
+                return {
+                pane: 'pane_LBR_adm1_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties[' "PopPopulation"  /  "PopArea (km2)" '] >= 11.859871 && feature.properties[' "PopPopulation"  /  "PopArea (km2)" '] <= 14.162923 ) {
+                return {
+                pane: 'pane_LBR_adm1_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,204,204,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties[' "PopPopulation"  /  "PopArea (km2)" '] >= 14.162923 && feature.properties[' "PopPopulation"  /  "PopArea (km2)" '] <= 27.060108 ) {
+                return {
+                pane: 'pane_LBR_adm1_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,153,153,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties[' "PopPopulation"  /  "PopArea (km2)" '] >= 27.060108 && feature.properties[' "PopPopulation"  /  "PopArea (km2)" '] <= 38.505508 ) {
+                return {
+                pane: 'pane_LBR_adm1_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,102,102,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties[' "PopPopulation"  /  "PopArea (km2)" '] >= 38.505508 && feature.properties[' "PopPopulation"  /  "PopArea (km2)" '] <= 53.670045 ) {
+                return {
+                pane: 'pane_LBR_adm1_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,51,51,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties[' "PopPopulation"  /  "PopArea (km2)" '] >= 53.670045 && feature.properties[' "PopPopulation"  /  "PopArea (km2)" '] <= 599.688842 ) {
+                return {
+                pane: 'pane_LBR_adm1_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,0,0,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_LBR_adm1_1');
+        map.getPane('pane_LBR_adm1_1').style.zIndex = 401;
+        map.getPane('pane_LBR_adm1_1').style['mix-blend-mode'] = 'normal';
+        var layer_LBR_adm1_1 = new L.geoJson(json_LBR_adm1_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_LBR_adm1_1',
+            layerName: 'layer_LBR_adm1_1',
+            pane: 'pane_LBR_adm1_1',
+            onEachFeature: pop_LBR_adm1_1,
+            style: style_LBR_adm1_1_0,
+        });
+        bounds_group.addLayer(layer_LBR_adm1_1);
+        map.addLayer(layer_LBR_adm1_1);
+        setBounds();
+        var i = 0;
+        layer_LBR_adm1_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['POP_DENSIT'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['POP_DENSIT']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_LBR_adm1_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_LBR_adm1_1]);
+        map.on("zoomend", function(){
+            resetLabels([layer_LBR_adm1_1]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_LBR_adm1_1]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_LBR_adm1_1]);
+        });
+        </script>
+    </body>
+</html>
